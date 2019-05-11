@@ -1,1 +1,1 @@
-gcc -o MultPersist MultPersist.c -lm -lgmp
+gcc -o MultPersist MultPersist.c -lgmp
