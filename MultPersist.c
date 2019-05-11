@@ -96,6 +96,6 @@ int main(int argc, char *argv[]) {
     goThoughAllNumbers(0, 0);
     printf("longest Number: ");
     printArray(longestNum);
-    printf("steps: %i", longestNumOfSteps);
+    printf("steps: %i\n", longestNumOfSteps);
     mpz_clear(temp);
 }
