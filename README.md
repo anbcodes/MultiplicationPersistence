@@ -9,4 +9,4 @@ This was inspired by this [video](https://youtu.be/Wim9WJeDTHQ) by Numberphile.
 
 1. Install the requirements
 2. Compile it using `compile.sh`
-3. Run it with this command `./MultPersist [Number of digits to go up to]` example `./MultPersist 15`
+3. Run it with this command `./MultPersist [Starting Number of digits] [Number of digits to go up to]` example `./MultPersist 10 15`

@@ -10,6 +10,7 @@ int longestNumOfSteps = 0;
 uint_fast8_t * currentNum;
 int numLength = 0;
 int NUMBER_OF_DIGITS;
+int START_DIGITS;
 void printBigNum(mpz_t num) {
     mpz_get_str(str, 10, num);
     printf("%s\n", str);
@@ -53,6 +54,7 @@ void check(mpz_t num) {
         }
         printf("new longest: ");
         printArray(longestNum);
+        printf("Steps: %i\n", steps);
     }
 }
 void goThoughAllNumbers(uint8_t base, int nest) {
@@ -60,7 +62,7 @@ void goThoughAllNumbers(uint8_t base, int nest) {
     mpz_init(number);
     for (uint8_t d = base; d < 10; d++) {
         currentNum[NUMBER_OF_DIGITS-1-nest] = d;
-        if (nest < NUMBER_OF_DIGITS-1) {
+        if (nest < NUMBER_OF_DIGITS-1 && (d != 0 || nest < NUMBER_OF_DIGITS-START_DIGITS)) {
             goThoughAllNumbers(d, nest+1);
         } else if (d != 0) {
             mpz_set_ui(number, 0);
@@ -79,16 +81,17 @@ void goThoughAllNumbers(uint8_t base, int nest) {
 }
 
 int main(int argc, char *argv[]) {
-    if( argc == 2 ) {
-      printf("starting with number of digits: %s\n", argv[1]);
+    if( argc == 3 ) {
+      printf("starting with digit %s, Maxumum digits: %s\n", argv[1], argv[2]);
     }
-    else if( argc > 2 ) {
+    else if( argc > 3 ) {
         printf("Too many arguments.\n");
     }
     else {
-        printf("One argument expected (Number of digits).\n");
+        printf("Two arguments expected (Starting Number of digits, Maxumum digits).\n");
     }
-    NUMBER_OF_DIGITS = atoi(argv[1]);
+    NUMBER_OF_DIGITS = atoi(argv[2]);
+    START_DIGITS = atoi(argv[1]);
     str = malloc((NUMBER_OF_DIGITS+2)*sizeof(char));
     longestNum = malloc((NUMBER_OF_DIGITS)*sizeof(uint_fast8_t));
     currentNum = malloc((NUMBER_OF_DIGITS)*sizeof(uint_fast8_t));
